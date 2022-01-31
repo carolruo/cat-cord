@@ -1,38 +1,7 @@
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
 import appConfig from "../config.json";
-
-function GlobalStyle() {
-  return (
-    <style global jsx>
-      {`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          list-style: none;
-        }
-        body {
-          font-family: "Open Sans", sans-serif;
-        }
-        /* App fit Height */
-        html,
-        body,
-        #__next {
-          min-height: 100vh;
-          display: flex;
-          flex: 1;
-        }
-        #__next {
-          flex: 1;
-        }
-        #__next > * {
-          flex: 1;
-        }
-        /* ./App fit Height */
-      `}
-    </style>
-  );
-}
+import React from "react";
+import { useRouter } from "next/router";
 
 function Title(props) {
   const Tag = props.tag || h1;
@@ -62,11 +31,12 @@ function Title(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-  const username = "carolruo";
+  //setUsername é o segundo valor de useState que é uma função do react para pegar a entrada de dados e mudar o username
+  const [username, setUsername] = React.useState("");
+  const roteamento = useRouter();
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: "flex",
@@ -75,7 +45,6 @@ export default function PaginaInicial() {
           backgroundColor: appConfig.theme.colors.primary[500],
           backgroundImage: "url(https://freesvg.org/img/Two-cats-by-Rones.png)",
           backgroundRepeat: "repeat",
-          //   backgroundSize: "cover",
           backgroundBlendMode: "multiply",
         }}
       >
@@ -100,6 +69,11 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function (infosDoEvento) {
+              //preventDefault previne que a página inteira seja recarregada quando clicar no form
+              infosDoEvento.preventDefault();
+              roteamento.push(`/chat?username=${username}`);
+            }}
             styleSheet={{
               display: "flex",
               flexDirection: "column",
@@ -118,10 +92,18 @@ export default function PaginaInicial() {
                 color: appConfig.theme.colors.neutrals[300],
               }}
             >
-              {appConfig.name}
+              {appConfig.name} <br></br>
+              {appConfig.desc}
             </Text>
 
             <TextField
+              value={username}
+              onChange={function (evento) {
+                //eventoQualquer.target.value para capturar a entrada de dados pelo teclado
+                const valor = evento.target.value;
+                //mandar para a função do react saber a entrada de dados
+                setUsername(valor);
+              }}
               fullWidth
               textFieldColors={{
                 neutral: {

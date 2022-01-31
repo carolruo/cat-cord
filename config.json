@@ -1,5 +1,6 @@
 {
   "name": "Only cats allowed!",
+  "desc": "Digite seu usuário do GitHub:",
   "theme": {
     "colors": {
       "primary": {
