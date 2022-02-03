@@ -201,12 +201,14 @@ function MessageList(props) {
                         <Box
                             styleSheet={{
                                 marginBottom: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
                             }}
                         >
                             <Image
                                 styleSheet={{
-                                    width: '20px',
-                                    height: '20px',
+                                    width: '30px',
+                                    height: '30px',
                                     borderRadius: '50%',
                                     display: 'inline-block',
                                     marginRight: '8px',
@@ -227,7 +229,13 @@ function MessageList(props) {
                                 {(new Date().toLocaleDateString())}
                             </Text>
                         </Box>
-                        {message.text.startsWith(':sticker:') ? (<Image src={message.text.replace(':sticker:', '')} />) : (message.text)}
+                        {message.text.startsWith(':sticker:')
+                            ? (<Image
+                                styleSheet={{
+                                    width: '200px'
+                                }}
+                                src={message.text.replace(':sticker:', '')} />)
+                            : (message.text)}
 
                     </Text>
                 )

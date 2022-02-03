@@ -17,18 +17,6 @@ function Title(props) {
     </>
   );
 }
-//componente react:
-// function HomePage() {
-//     return (
-//         <div>
-//             <GlobalStyle/>
-//             <Title tag="Tag">Boas Vindas</Title>
-//             <h2>Discord - Unal</h2>
-
-//         </div>
-//     )
-// }
-// export default HomePage
 
 export default function PaginaInicial() {
   //setUsername é o segundo valor de useState que é uma função do react para pegar a entrada de dados e mudar o username
@@ -64,6 +52,7 @@ export default function PaginaInicial() {
             margin: "16px",
             boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
             backgroundColor: appConfig.theme.colors.neutrals[700],
+            opacity: 0.99,
           }}
         >
           {/* Formulário */}
