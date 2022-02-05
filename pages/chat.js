@@ -113,6 +113,7 @@ export default function ChatPage() {
                         styleSheet={{
                             display: 'flex',
                             alignItems: 'center',
+                            justifyContent: 'center'
                         }}
                     >
                         <TextField
@@ -138,6 +139,19 @@ export default function ChatPage() {
                                 backgroundColor: appConfig.theme.colors.neutrals[800],
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200],
+                            }}
+                        />
+                        <Button
+                            type='submit'
+                            colorVariant='neutral'
+                            label='Enviar'
+                            onClick={(event) => {
+                                event.preventDefault();
+                                { handleNewMessage(message) }
+                            }}
+                            styleSheet={{
+                                marginRight: '10px'
+
                             }}
                         />
                         <ButtonSendSticker
@@ -232,7 +246,8 @@ function MessageList(props) {
                         {message.text.startsWith(':sticker:')
                             ? (<Image
                                 styleSheet={{
-                                    width: '200px'
+                                    maxWidth: '200px',
+                                    maxHeight: '200px',
                                 }}
                                 src={message.text.replace(':sticker:', '')} />)
                             : (message.text)}
