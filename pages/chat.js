@@ -113,7 +113,6 @@ export default function ChatPage() {
                         styleSheet={{
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
                         }}
                     >
                         <TextField
@@ -139,19 +138,6 @@ export default function ChatPage() {
                                 backgroundColor: appConfig.theme.colors.neutrals[800],
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200],
-                            }}
-                        />
-                        <Button
-                            type='submit'
-                            colorVariant='neutral'
-                            label='Enviar'
-                            onClick={(event) => {
-                                event.preventDefault();
-                                { handleNewMessage(message) }
-                            }}
-                            styleSheet={{
-                                marginRight: '10px'
-
                             }}
                         />
                         <ButtonSendSticker
@@ -215,14 +201,12 @@ function MessageList(props) {
                         <Box
                             styleSheet={{
                                 marginBottom: '8px',
-                                display: 'flex',
-                                alignItems: 'center',
                             }}
                         >
                             <Image
                                 styleSheet={{
-                                    width: '30px',
-                                    height: '30px',
+                                    width: '20px',
+                                    height: '20px',
                                     borderRadius: '50%',
                                     display: 'inline-block',
                                     marginRight: '8px',
@@ -243,14 +227,7 @@ function MessageList(props) {
                                 {(new Date().toLocaleDateString())}
                             </Text>
                         </Box>
-                        {message.text.startsWith(':sticker:')
-                            ? (<Image
-                                styleSheet={{
-                                    maxWidth: '200px',
-                                    maxHeight: '200px',
-                                }}
-                                src={message.text.replace(':sticker:', '')} />)
-                            : (message.text)}
+                        {message.text.startsWith(':sticker:') ? (<Image src={message.text.replace(':sticker:', '')} />) : (message.text)}
 
                     </Text>
                 )
